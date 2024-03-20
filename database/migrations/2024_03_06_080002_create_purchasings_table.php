@@ -13,7 +13,12 @@ return new class extends Migration
     {
         Schema::create('purchasings', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->bigInteger('Vendor_Id');
+            $table->bigInteger('Admin_Id');
+            $table->date('Date_Purchase');
+            $table->enum('Purchase_Status',['delivery','not_delivery'])->default('not_delivery');
+            $table->integer('Grand_Total');
+            $table->timeStamps();
         });
     }
 

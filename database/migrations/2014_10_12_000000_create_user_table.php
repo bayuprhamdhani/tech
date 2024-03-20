@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('Full_Name');
             $table->string('Email_Addres')->unique();
             $table->string('password');
-            $table->bigInteger('role_id');
-            $table->enum('status', ['Active', 'Inactive'])->default('Active');
+            $table->bigInteger('Role_Id');
+            $table->enum('Status', ['Active', 'Inactive'])->default('Active');
         });
     }
 
