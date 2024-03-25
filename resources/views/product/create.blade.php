@@ -1,0 +1,85 @@
+@extends('layout')
+  
+@section('content')
+<main class="login-form">
+  <div class="cotainer">
+      <div class="row justify-content-center">
+          <div class="col-md-8">
+              <div class="card">
+                  <div class="card-header">Add Product</div>
+                  <div class="card-body">
+  
+                      <form action="{{ route('product.store') }}" method="POST">
+                          @csrf
+                          <div class="form-group row mt-3">
+                              <label for="Product_Name" class="col-md-4 col-form-label text-right">Product Name</label>
+                              <div class="col-md-6">
+                                  <input type="text" id="Product_Name" class="form-control" name="Product_Name" required autofocus>
+                                  @if ($errors->has('Product_Name'))
+                                      <span class="text-danger">{{ $errors->first('Product_Name') }}</span>
+                                  @endif
+                              </div>
+                          </div>
+  
+                          <div class="form-group row mt-3">
+                              <label for="Qty" class="col-md-4 col-form-label text-right">Quantity</label>
+                              <div class="col-md-6">
+                                  <input type="text" id="Qty" class="form-control" name="Qty" required autofocus>
+                                  @if ($errors->has('Qty'))
+                                      <span class="text-danger">{{ $errors->first('Qty') }}</span>
+                                  @endif
+                              </div>
+                          </div>
+  
+                          <div class="form-group row mt-3">
+                              <label for="Selling_Price" class="col-md-4 col-form-label text-right">Selling Price</label>
+                              <div class="col-md-6">
+                                  <input type="text" id="Selling_Price" class="form-control" name="Selling_Price" required autofocus>
+                                  @if ($errors->has('Selling_Price'))
+                                      <span class="text-danger">{{ $errors->first('Selling_Price') }}</span>
+                                  @endif
+                              </div>
+                          </div>
+
+                          <div class="form-group row mt-3">
+                              <label for="Buying_Price" class="col-md-4 col-form-label text-right">Buying Price</label>
+                              <div class="col-md-6">
+                                  <input type="text" id="Buying_Price" class="form-control" name="Buying_Price" required autofocus>
+                                  @if ($errors->has('Buying_Price'))
+                                      <span class="text-danger">{{ $errors->first('Buying_Price') }}</span>
+                                  @endif
+                              </div>
+                          </div>
+  
+                          <div class="form-group row mt-3">
+                            <label for="Product_Type_ID" class="col-md-4 col-form-label text-right">Product Type ID</label>
+                            <div class="col-md-6">
+                                <select class="form-select" id="Product_Type_ID" name="Product_Type_ID" aria-label="Product_Type_ID">
+                                    <option value="">Choose</option>
+                                    @foreach($product__types as $val)
+                                        <option value="{{$val->Product_Type}}">{{$val->Product_Type}}</option>
+                                    @endforeach
+                                </select>
+                                @if ($errors->has('id'))
+                                    <span class="text-danger">{{ $errors->first('id') }}</span>
+                                @endif
+                            </div>
+                          </div>
+
+                          
+
+  
+                          <div class="col-md-6 offset-md-4 mt-3 p-2 d-grid">
+                              <button type="submit" class="btn btn-primary">
+                                  Submit
+                              </button>
+                          </div>
+                      </form>
+                        
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</main>
+@endsection

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 use App\Models\User;
 use App\Models\Role;
+use App\Models\Status;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Validator;
@@ -39,6 +40,7 @@ class AuthController extends Controller
     public function registration(): View
     {
         $roles = Role::all();
+        $statuses = Status::all();
         return view('auth.registration', compact('roles'));
     }
 
@@ -76,7 +78,7 @@ class AuthController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
-            'role_id' => 'required',
+            'role' => 'required',
         ]);
            
         $data = $request->all();

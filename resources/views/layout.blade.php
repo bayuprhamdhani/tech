@@ -73,16 +73,19 @@
                         </li>
                     @else
                         <li class="nav-item">
-                            <a class="nav-link" href="">User</a>
+                            <a class="nav-link" href="{{ route('users.index') }}">User</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">Master Ruangan</a>
+                            <a class="nav-link" href="{{ route('product.index') }}">Master Barang</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">Booking Ruangan</a>
+                            <a class="nav-link" href="">Transaksi Penjualan</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">Logout</a>
+                            <a class="nav-link" href="">Transaksi Pembelian</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">Logout</a>
                         </li>
                     @endguest
                 </ul>

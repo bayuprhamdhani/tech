@@ -11,13 +11,14 @@ class RoleSeeder extends Seeder
      * Run the database seeds.
      */
     private $roles = [
-        ["admin", "Admin"],
-        ["owner", "Owner"],
-        ["dev", "Developer"],
-        ["user", "User"],
-        ["customer", "customer"],
-        ["kasir", "kasir"],
-        ["vendor", "vendor"],
+        [1, "Admin"],
+        [2, "Owner"],
+        [3, "Developer"],
+        [4, "User"],
+        [5, "customer"],
+        [6, "kasir"],
+        [7, "vendor"],
+        [8, "queen"],
 
     ];
 
@@ -25,7 +26,7 @@ class RoleSeeder extends Seeder
     {
         foreach ($this->roles as $role) {
             \App\Models\Role::create([
-                //"guid" => $role[0],
+                "id" => $role[0],
                 "role_name" => $role[1],
             ]);
         }
