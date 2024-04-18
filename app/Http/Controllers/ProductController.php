@@ -47,7 +47,7 @@ class ProductController extends Controller
             //'Product_Status' =>$data['Product_Status'],
         ]);
          
-        return redirect()->route('product.index')->withSuccess('Great! You have Successfully loggedin');
+        return redirect()->route('product.index')->withSuccess('Great! You have Successfully Create');
     }
 
     public function edit(Product $product)
@@ -75,13 +75,13 @@ class ProductController extends Controller
         //$product->Product_Status = $request->Product_Status;
         $product->save();
 
-        return redirect()->route('product.index')->withSuccess('Great! You have Successfully loggedin');
+        return redirect()->route('product.index')->withSuccess('Great! You have Successfully updated '. $product->Product_Name);
     }
 
     public function destroy(Product $product)
     {
         $product->delete();
-        return redirect()->route('product.index')->with('success','user has been deleted successfully');
+        return redirect()->route('product.index')->withSuccess($product->Product_Name. ' has been deleted successfully');
     }
 
 }

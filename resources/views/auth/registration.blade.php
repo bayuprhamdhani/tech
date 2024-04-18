@@ -55,6 +55,21 @@
                                     @endif
                                 </div>
                             </div>
+
+                            <div class="form-group row mt-3">
+                            <label for="Status" class="col-md-4 col-form-label text-right">Status</label>
+                            <div class="col-md-6">
+                                <select class="form-select" id="Status" name="Status" aria-label="Status">
+                                    <option value="">Choose</option>
+                                    @foreach($status as $val)
+                                        <option value="{{$val->status}}">{{$val->status}}</option>
+                                    @endforeach
+                                </select>
+                                @if ($errors->has('status'))
+                                    <span class="text-danger">{{ $errors->first('statuss') }}</span>
+                                @endif
+                            </div>
+                         </div> 
     
                             <div class="col-md-6 offset-md-4 mt-3 p-2 d-grid">
                                 <button type="submit" class="btn btn-primary">

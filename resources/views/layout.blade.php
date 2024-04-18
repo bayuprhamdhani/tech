@@ -1,101 +1,437 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Laravel - ItSolutionStuff.com</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <style type="text/css">
-        @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <meta name="description" content=""/>
+  <meta name="author" content=""/>
+  <title>Dashtreme Admin - Free Dashboard for Bootstrap 4 by Codervent</title>
+  <link rel="stylesheet" href="{{url('css/style4.css')}}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- loader-->
+  <link href="assets/css/pace.min.css" rel="stylesheet"/>
+  <script src="assets/js/pace.min.js"></script>
+  <!--favicon-->
+  <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+  <!-- Vector CSS -->
+  <link href="assets/plugins/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet"/>
+  <!-- simplebar CSS-->
+  <link href="assets/plugins/simplebar/css/simplebar.css" rel="stylesheet"/>
+  <!-- Bootstrap core CSS-->
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet"/>
+  <!-- animate CSS-->
+  <link href="assets/css/animate.css" rel="stylesheet" type="text/css"/>
+  <!-- Icons CSS-->
+  <link href="assets/css/icons.css" rel="stylesheet" type="text/css"/>
+  <!-- Sidebar CSS-->
+  <link href="assets/css/sidebar-menu.css" rel="stylesheet"/>
+  <!-- Custom Style-->
+  <link href="assets/css/app-style.css" rel="stylesheet"/>
   
-        body{
-            margin: 0;
-            font-size: .9rem;
-            font-weight: 400;
-            line-height: 1.6;
-            color: #212529;
-            text-align: left;
-            background-color: #f5f8fa;
-        }
-        .navbar-laravel
-        {
-            box-shadow: 0 2px 4px rgba(0,0,0,.04);
-        }
-        .navbar-brand , .nav-link, .my-form, .login-form
-        {
-            font-family: Raleway, sans-serif;
-        }
-        .my-form
-        {
-            padding-top: 1.5rem;
-            padding-bottom: 1.5rem;
-        }
-        .my-form .row
-        {
-            margin-left: 0;
-            margin-right: 0;
-        }
-        .login-form
-        {
-            padding-top: 1.5rem;
-            padding-bottom: 1.5rem;
-        }
-        .login-form .row
-        {
-            margin-left: 0;
-            margin-right: 0;
-        }
-    </style>
-    
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.min.js" integrity="sha384-heAjqF+bCxXpCWLa6Zhcp4fu20XoNIA98ecBC1YkdXhszjoejr5y9Q77hIrv8R9i" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 </head>
-<body>
-    
-<nav class="navbar navbar-expand-lg navbar-light">
-    <div class="container">
-        <a class="navbar-brand" href="{{ route('dashboard') }}">SIMARU</a>
-        
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+
+<body class="bg-theme bg-theme2">
+ 
+<!-- Start wrapper-->
+ <div id="wrapper">
+ 
+  <!--Start sidebar-wrapper-->
+   <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
+     <div class="brand-logo">
+       <h1 class="logo-text">MENU !!!</h1>
+     </a>
+   </div>
+   <ul class="sidebar-menu do-nicescrol">
+      <li class="sidebar-header">MAIN NAVIGATION</li>
+      <li>
+        <a href="{{ route('dashboard') }}">
+          <i class="zmdi zmdi-archive"></i> <span>Dashboard</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="{{ route('users.index') }}">
+          <i class="zmdi zmdi-view-dashboard"></i> <span>Users Data</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="{{ route('product.index') }}">
+          <i class="zmdi zmdi-invert-colors"></i> <span>Products Data</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="index.html">
+          <i class="zmdi zmdi-format-list-bulleted"></i> <span>Purchase</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="index.html">
+          <i class="zmdi zmdi-grid"></i> <span>Sales Transaction</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="{{ route('calendar') }}">
+          <i class="zmdi zmdi-account-calendar"></i> <span>Calendar</span>
+        </a>
+      </li>
+
+    </ul>
    
-        <div class="row justify-content-end">
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    @guest
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">Register</a>
-                        </li>
-                    @else
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('users.index') }}">User</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('product.index') }}">Master Barang</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="">Transaksi Penjualan</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="">Transaksi Pembelian</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">Logout</a>
-                        </li>
-                    @endguest
-                </ul>
+   </div>
+   <!--End sidebar-wrapper-->
+
+<!--Start topbar header-->
+<header class="topbar-nav">
+ <nav class="navbar navbar-expand fixed-top">
+  <ul class="navbar-nav mr-auto align-items-center">
+    <li class="nav-item">
+      <a class="nav-link toggle-menu" href="javascript:void();">
+       <i class="icon-menu menu-icon"></i>
+     </a>
+    </li>
+    <li class="nav-item">
+    <img src="assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
+       <h5 class="logo-text">Bayu MI22A</h5>
+    </li>
+  </ul>
+
+  <ul class="navbar-nav align-items-center right-nav-link">
+    <li class="nav-item message">
+      <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown" href="javascript:void();"><i class="fa fa-bell-o"></i></a>
+    
+      <ul class="dropdown-menu dropdown-menu-right">
+          <a class="dropdown-item media" href="#">
+            <span class="photo media-left"><img alt="avatar" src="images/avatar/1.jpg"></span>
+            <div class="message media-body">
+              <span class="name float-left">s</span>
+              <span class="time float-left"> Trinanda Zalsa</span>
+              <span class="time float-right">Just now</span><br>
+              <span class="name float-left">s</span>
+              <span class="chat">Fighting too...</span><br>
             </div>
-        </div>
-    </div>
+          </a>
+          <a class="dropdown-item media" href="#">
+            <span class="photo media-left"><img alt="avatar" src="images/avatar/3.jpg"></span>
+            <div class="message media-body">
+              <span class="name float-left">s</span>
+              <span class="time float-left">Faiz Intel</span>
+              <span class="time float-right">5 Minute</span><br>
+              <span class="name float-left">s</span>
+              <span class="chat">Pres...ie tos aya narkoba</span><br>
+            </div>
+          </a>
+          <a class="dropdown-item media" href="#">
+            <span class="photo media-left"><img alt="avatar" src="images/avatar/2.jpg"></span>
+            <div class="message media-body">
+              <span class="name float-left">s</span>
+              <span class="time float-left">Atep Ramga</span>
+              <span class="time float-right">3 Minute</span><br>
+              <span class="name float-left">s</span>
+              <span class="chat">Info hajatan uy</span><br>
+            </div>
+          </a>
+          <a class="dropdown-item media" href="#">
+            <span class="photo media-left"><img alt="avatar" src="images/avatar/4.jpg"></span>
+            <div class="message media-body">
+              <span class="name float-left">s</span>
+              <span class="time float-left">Santyo Fighter</span>
+              <span class="time float-right">13 Minute</span><br>
+              <span class="name float-left">s</span>
+              <span class="chat">Cik order ganja 3 bengket</span><br>
+            </div>
+          </a>
+          <a class="dropdown-item media" href="#">
+            <span class="photo media-left"><img alt="avatar" src="images/avatar/5.jpg"></span>
+            <div class="message media-body">
+              <span class="name float-left">s</span>
+              <span class="time float-left">Pak Yudi</span>
+              <span class="time float-right text-xl">33 Minute</span><br>
+              <span class="name float-left">s</span>
+              <span class="chat">Ngeri bapak mah...</span><br>
+            </div>
+          </a>
+      </ul>
+    </li>
+
+    <li class="nav-item dropdown-lg">
+      <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown" href="javascript:void();"><i class="fa fa-envelope-open-o"></i></a>
+      <ul class="dropdown-menu dropdown-menu-right col-md-4 offset-md-4 col-sm-8">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-content">
+                                          <h4 class="card-title box-title">Live Chat</h4>
+                                    <div class="messenger-box">
+                                            <li>
+                                                <div class="msg-sent msg-container">
+                                                    <div class="avatar">
+                                                       <img src="images/avatar/7.jpg" alt="">
+                                                       <div class="send-time">04.30</div>
+                                                    </div>
+                                                    <div class="msg-box">
+                                                        <div class="inner-box">
+                                                            <div class="name">
+                                                                Bayu Pratama R
+                                                            </div>
+                                                            <div class="meg">
+                                                                Fighting for today...
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div><!-- /.msg-sent -->
+                                            </li>
+                                            <li>
+                                                <div class="msg-received msg-container">
+                                                    <div class="avatar">
+                                                       <img src="images/avatar/1.jpg" alt="">
+                                                       <div class="send-time">04.35</div>
+                                                    </div>
+                                                    <div class="msg-box">
+                                                        <div class="inner-box">
+                                                            <div class="name">
+                                                                Trinanda Zalsa
+                                                            </div>
+                                                            <div class="meg">
+                                                                Fighting too...
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div><!-- /.msg-received -->
+                                            </li>
+                                        
+                                        <div class="send-mgs">
+                                            <div class="yourmsg">
+                                                <input class="form-control" type="text">
+                                            </div>
+                                            <button class="btn msg-send-btn">
+                                                <i class="pe-7s-paper-plane"></i>
+                                            </button>
+                                        </div>
+                                    </div><!-- /.messenger-box -->
+                                </div>
+                            </div> <!-- /.card-body -->
+                        </div><!-- /.card -->
+      
+      </ul>
+    </li>
+    <li class="nav-item language">
+      <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown" href="javascript:void();"><i class="fa fa-flag"></i></a>
+      <ul class="dropdown-menu dropdown-menu-right">
+          <li class="dropdown-item"> <i class="flag-icon flag-icon-gb mr-2"></i> English</li>
+          <li class="dropdown-item"> <i class="flag-icon flag-icon-fr mr-2"></i> French</li>
+          <li class="dropdown-item"> <i class="flag-icon flag-icon-cn mr-2"></i> Chinese</li>
+          <li class="dropdown-item"> <i class="flag-icon flag-icon-de mr-2"></i> German</li>
+        </ul>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
+        <span class="user-profile"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPFNeUn89NkscCQdePBFlIp7ixL81eU9pY3g&s" class="img-circle" alt="user avatar"></span>
+      </a>
+      <ul class="dropdown-menu dropdown-menu-right">
+       <li class="dropdown-item user-details">
+        <a href="javaScript:void();">
+           <div class="media">
+             <div class="avatar"><img class="align-self-start mr-3" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPFNeUn89NkscCQdePBFlIp7ixL81eU9pY3g&s" alt="user avatar"></div>
+            <div class="media-body">
+            <h6 class="mt-2 user-title">{{ auth()->user()->name }}</h6>
+            <p class="user-subtitle">{{ auth()->user()->email }}</p>
+            </div>
+           </div>
+          </a>
+        </li>
+        <li class="dropdown-divider"></li>
+        <a href="{{ route('profile') }}">
+        <li class="dropdown-item"><i class="zmdi zmdi-face mr-2"></i> Profile</li>
+        </a>
+        <li class="dropdown-divider"></li>
+        <li class="dropdown-item"><i class="icon-wallet mr-2"></i> Account</li>
+        <li class="dropdown-divider"></li>
+        <li class="dropdown-item"><i class="icon-settings mr-2"></i> Setting</li>
+        <li class="dropdown-divider"></li>
+        <a href="{{ route('logout') }}">
+        <li class="dropdown-item"><i class="icon-power mr-2"></i> Logout</li>
+</a>
+      </ul>
+    </li>
+  </ul>
 </nav>
+</header>
+<!--End topbar header-->
+
+<div class="clearfix"></div>
+	
+  <div class="content-wrapper">
+    <div class="container-fluid">
+
+
+	  
+	<!--start overlay-->
+		  <div class="overlay toggle-menu"></div>
+		<!--end overlay-->
+		
+    </div>
+    <!-- End container-fluid-->
+    
+    </div><!--End content-wrapper-->
+   <!--Start Back To Top Button-->
+    <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+    <!--End Back To Top Button-->
+</div>	
+
+
+	
+  <!--start color switcher-->
+   <div class="right-sidebar">
+    <div class="switcher-icon">
+      <i class="zmdi zmdi-settings zmdi-hc-spin"></i>
+    </div>
+    <div class="right-sidebar-content">
+
+      <p class="mb-0">Gaussion Texture</p>
+      <hr>
+      
+      <ul class="switcher">
+        <li id="themeL"></li>
+        <li id="theme1"></li>
+        <li id="theme2"></li>
+        <li id="theme3"></li>
+        <li id="theme4"></li>
+        <li id="theme5"></li>
+        <li id="theme6"></li>
+      </ul>
+
+      <p class="mb-0">Gradient Background</p>
+      <hr>
+      
+      <ul class="switcher">
+        <li id="theme7"></li>
+        <li id="theme8"></li>
+        <li id="theme9"></li>
+        <li id="theme10"></li>
+        <li id="theme11"></li>
+        <li id="theme12"></li>
+		<li id="theme13"></li>
+        <li id="theme14"></li>
+        <li id="theme15"></li>
+      </ul>
+      
+     </div>
+   </div>
+  <!--end color switcher-->
+   
+  </div><!--End wrapper-->
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/popper.min.js"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
+	
+ <!-- simplebar js -->
+  <script src="assets/plugins/simplebar/js/simplebar.js"></script>
+  <!-- sidebar-menu js -->
+  <script src="assets/js/sidebar-menu.js"></script>
+  <!-- loader scripts -->
+  <script src="assets/js/jquery.loading-indicator.js"></script>
+  <!-- Custom scripts -->
+  <script src="assets/js/app-script.js"></script>
+  <!-- Chart js -->
   
-        @yield('content')
+  <script src="assets/plugins/Chart.js/Chart.min.js"></script>
+ 
+  <!-- Index js -->
+  <script src="assets/js/index.js"></script>
+
+  @yield('content')
+  <link  href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"
+/>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.min.js" integrity="sha384-heAjqF+bCxXpCWLa6Zhcp4fu20XoNIA98ecBC1YkdXhszjoejr5y9Q77hIrv8R9i" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
-    </body>
+        <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
+        <script src="https://cdn.datatables.net/2.0.3/js/dataTables.bootstrap5.js"></script>  
+        <script>
+            new DataTable('#users')
+            const customSelect = document.querySelector(".custom-select");
+const selectBtn = document.querySelector(".select-button");
+
+const selectedValue = document.querySelector(".selected-value");
+const optionsList = document.querySelectorAll(".select-dropdown li");
+
+// add click event to select button
+selectBtn.addEventListener("click", () => {
+  // add/remove active class on the container element
+  customSelect.classList.toggle("active");
+  // update the aria-expanded attribute based on the current state
+  selectBtn.setAttribute(
+    "aria-expanded",
+    selectBtn.getAttribute("aria-expanded") === "true" ? "false" : "true"
+  );
+});
+
+optionsList.forEach((option) => {
+  function handler(e) {
+    // Click Events
+    if (e.type === "click" && e.clientX !== 0 && e.clientY !== 0) {
+      selectedValue.textContent = this.children[1].textContent;
+      customSelect.classList.remove("active");
+    }
+    // Key Events
+    if (e.key === "Enter") {
+      selectedValue.textContent = this.textContent;
+      customSelect.classList.remove("active");
+    }
+  }
+
+  option.addEventListener("keyup", handler);
+  option.addEventListener("click", handler);
+});
+        </script>
+
+<script src="{{ asset('js/app.js') }}"></script>
+@stack('other-scripts')
+<script>
+$(document).ready(function() {
+  $(".drop .option").click(function() {
+    var val = $(this).attr("data-value"),
+        $drop = $(".drop"),
+        prevActive = $(".drop .option.active").attr("data-value"),
+        options = $(".drop .option").length;
+    $drop.find(".option.active").addClass("mini-hack");
+    $drop.toggleClass("visible");
+    $drop.removeClass("withBG");
+    $(this).css("top");
+    $drop.toggleClass("opacity");
+    $(".mini-hack").removeClass("mini-hack");
+    if ($drop.hasClass("visible")) {
+      setTimeout(function() {
+        $drop.addClass("withBG");
+      }, 400 + options*100); 
+    }
+    triggerAnimation();
+    if (val !== "placeholder" || prevActive === "placeholder") {
+      $(".drop .option").removeClass("active");
+      $(this).addClass("active");
+    };
+  });
+  
+  function triggerAnimation() {
+    var finalWidth = $(".drop").hasClass("visible") ? 22 : 20;
+    $(".drop").css("width", "24em");
+    setTimeout(function() {
+      $(".drop").css("width", finalWidth + "em");
+    }, 400);
+  }
+});
+</script>
+</body>
 </html>

@@ -1,3 +1,4 @@
+
 @extends('layout')
   
 @section('content')
@@ -44,7 +45,7 @@
                           <div class="form-group row mt-3">
                             <label for="role" class="col-md-4 col-form-label text-right">Role</label>
                             <div class="col-md-6">
-                                <select class="form-select" id="role" name="role" aria-label="role">
+                                <select class="custom-select" id="role" name="role" aria-label="role">
                                     <option value="">Choose</option>
                                     @foreach($roles as $val)
                                         <option value="{{$val->Role_Name}}">{{$val->Role_Name}}</option>
@@ -56,11 +57,11 @@
                             </div>
                           </div>
 
-                          
+                                              
                         <div class="form-group row mt-3">
                             <label for="Status" class="col-md-4 col-form-label text-right">Status</label>
                             <div class="col-md-6">
-                                <select class="form-select" id="Status" name="Status" aria-label="Status">
+                                <select class="custom-select" id="Status" name="Status" aria-label="Status">
                                     <option value="">Choose</option>
                                     @foreach($status as $val)
                                         <option value="{{$val->status}}">{{$val->status}}</option>

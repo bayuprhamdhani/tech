@@ -16,7 +16,7 @@
                     <a href="{{ route('users.create') }}" class="btn btn-sm btn-secondary">
                         Tambah User
                     </a>
-                    <table class="table">
+                    <table class="table table-responsive" style="width:100%" id="users">
                         <thead>
                             <tr>
                                 <th scope="col">No</th>
@@ -61,4 +61,5 @@
         </div>
     </div>
 </div>
+
 @endsection

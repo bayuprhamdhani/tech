@@ -18,13 +18,45 @@ use Validator;
 class AuthController extends Controller
 {
     //
-    public function dashboard()
+    public function dashboard(User $user)
     {
         // if(Auth::check()){
-            return view('dashboard');
+            return view('dashboard2');
         //}
   
         //return redirect("login")->withSuccess('Opps! You do not have access');
+    }
+
+    public function calendar(User $user)
+    {
+        // if(Auth::check()){
+            return view('calendar');
+        //}
+  
+        //return redirect("login")->withSuccess('Opps! You do not have access');
+    }
+
+    public function profile(User $user)
+    {
+        // if(Auth::check()){
+            return view('profile');
+        //}
+  
+        //return redirect("login")->withSuccess('Opps! You do not have access');
+    }
+
+    public function test(User $user)
+    {
+        // if(Auth::check()){
+            return view('test');
+        //}
+  
+        //return redirect("login")->withSuccess('Opps! You do not have access');
+    }
+
+    public function index2(): View
+    {
+        return view('auth.index');
     }
 
     public function index(): View
@@ -40,8 +72,8 @@ class AuthController extends Controller
     public function registration(): View
     {
         $roles = Role::all();
-        $statuses = Status::all();
-        return view('auth.registration', compact('roles'));
+        $status = Status::all();
+        return view('auth.index2', compact('roles', 'status'));
     }
 
     public function postLogin(Request $request): RedirectResponse
@@ -63,7 +95,7 @@ class AuthController extends Controller
                         ->withSuccess('You have Successfully loggedin with token');
         }
   
-        return redirect("login")->withSuccess('Oppes! You have entered invalid credentials');
+        return redirect("dashboard")->withSuccess('Oppes! You have entered invalid credentials');
     }
       
     /**
@@ -79,13 +111,14 @@ class AuthController extends Controller
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
             'role' => 'required',
+            'Status' => 'required',
         ]);
            
         $data = $request->all();
         // dd($data);
         $check = $this->create($data);
          
-        return redirect("dashboard")->withSuccess('Great! You have Successfully loggedin');
+        return redirect("index")->withSuccess('Great! You have Successfully loggedin');
     }
     
     /**
@@ -105,7 +138,8 @@ class AuthController extends Controller
         'name' => $data['name'],
         'email' => $data['email'],
         'password' => Hash::make($data['password']),
-        'role' =>$data['role']
+        'role' =>$data['role'],
+        'Status' =>$data['Status']
       ]);
     }
     
@@ -119,7 +153,7 @@ class AuthController extends Controller
         Session::flush();
         Auth::logout();
   
-        return Redirect('login');
+        return Redirect('index');
     }
 
     public function handleLogin(Request $request)
@@ -162,6 +196,7 @@ class AuthController extends Controller
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
             'role' => 'required|in:admin,dev,owner,user',
+            'Status' => 'required',
         ]);
 
         if($validator->fails()){
@@ -174,7 +209,8 @@ class AuthController extends Controller
                 "name"          => $request->name,
                 "email"         => $request->email,
                 "password"      => $request->password,
-                "role"       => $request->role,
+                "role"          => $request->role,
+                "Status"          => $request->Status,
             ]);
 
             DB::commit();

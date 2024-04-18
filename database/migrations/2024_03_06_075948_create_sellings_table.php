@@ -18,7 +18,6 @@ return new class extends Migration
             $table->date('Date_Sell');
             $table->enum('Selling_Status',['delivery','not_delivery'])->default('not_delivery');
             $table->Integer('Grand_Total');
-            $table->timeStamps();
         });
     }
 
