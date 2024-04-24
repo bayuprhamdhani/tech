@@ -7,10 +7,26 @@ use App\Http\Controllers\RuangController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SellingController;
- 
+use App\Http\Controllers\PurchasingController;
+
+
 Route::get('/Coba/{nama2}/test', [Coba::class, 'Tes']);
 
+Route::controller(UserController::class)->group(function(){
+    Route::get('users', 'index');
+    Route::get('users-export', 'export')->name('users.export');
+    Route::post('users-import', 'import')->name('users.import');
+});
+
+Route::resource('purchase', PurchasingController::class);
+Route::get('create-purchase', [PurchasingController::class,'create'])->name('purchase.create');
+Route::post('store-purchase', [PurchasingController::class,'store'])->name('purchase.store');
+Route::get('edit-purchase', [PurchasingController::class,'edit'])->name('purchase.edit');
+
 Route::resource('selling', SellingController::class);
+Route::get('create-selling', [SellingController::class,'create'])->name('selling.create');
+Route::post('store-selling', [SellingController::class,'store'])->name('selling.store');
+Route::get('edit-selling', [SellingController::class,'edit'])->name('selling.edit');
 Route::resource('product', ProductController::class);
 Route::get('create-product', [ProductController::class,'create'])->name('product.create');
 Route::post('store-product', [ProductController::class,'store'])->name('product.store');

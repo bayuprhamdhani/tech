@@ -1,82 +1,79 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\User;
+use App\Models\Purchasing;
 use App\Models\Role;
-use App\Models\Status;
+use App\Models\Transaction_Status;
 use Illuminate\Http\Request;
 use Hash;
 
-class UserController extends Controller
+class PurchasingController extends Controller
 {
     public function index(){
-        $status = Status::All();
-        $users = User::All();
-        $ruangans = "Cek data";
+        $transaction_status = Transaction_Status::All();
+        $purchasings = Purchasing::All();
 
-    return view('users.index', compact('users',));
+    return view('purchasing.index', compact('purchasings',));
     }
 
     public function create(){
-        $roles = Role::All();
-        $status = Status::All();
-        return view('users/create', compact('roles', 'status'));
+        $transaction_status = Transaction_Status::All();
+        return view('purchasing/create', compact('transaction_status'));
     }
 
     public function store(Request $request)
     {  
-        // dd($request);
+        dd($request);
         $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:6',
-            'role' => 'required',
-            'Status' => 'required',
+            'Vendor_Id' => 'required',
+            'Admin_Id' => 'required',
+            'Date_Purchase' => 'required',
+            'Purchase_Status' => 'required',
+            'Grand_Total' => 'required',
         ]);
            
         $data = $request->all();
         // dd($data);
-        $check = User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'role' =>$data['role'],
-            'Status' =>$data['Status'],
-            'password' => Hash::make($data['password'])
+        $check = Purchasing::create([
+            'Vendor_Id' => $data['Vendor_Id'],
+            'Admin_Id' => $data['Admin_Id'],
+            'Date_Purchase' =>$data['Date_Purchase'],
+            'Purchase_Status' =>$data['Purchase_Status'],
+            'Grand_Total' => ($data['Grand_Total'])
         ]);
          
-        return redirect()->route('users.index')->withSuccess('Great! You have Successfully loggedin');
+        return redirect()->route('purchase.index')->withSuccess('Great! You have Successfully loggedin');
     }
 
-    public function edit(User $user)
+    public function edit(Purchasing $purchasing)
     {   
-        $roles = Role::All();
-        $status = Status::All();
-    return view('users.edit', compact('user', 'roles', 'status'));
+        $transaction_status = Transaction_Status::All();
+    return view('purchasing.edit', compact('purchasing', 'transaction_status'));
     }
 
-    public function update(Request $request, User $user, Status $status)
+    public function update(Request $request, Purchasing $purchasing, Transaction_Status $transaction_status)
     {
         $request->validate([
-            'name' => 'required',
-            'email' => 'required|email',
-            'password' => 'nullable|min:6',
-            'role' => 'required',
-            'Status' => 'required',
+            'Vendor_Id' => 'required',
+            'Admin_Id' => 'required',
+            'Date_Purchase' => 'required',
+            'Purchase_Status' => 'required',
+            'Grand_Total' => 'required',
         ]);
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->role = $request->role;
-        $user->Status = $request->Status;
-        if(!empty($request->password)) $user->password = Hash::make($request->password);
-        $user->save();
+        $purchasing->Vendor_Id = $request->Vendor_Id;
+        $purchasing->Admin_Id = $request->Admin_Id;
+        $purchasing->Date_Purchase = $request->Date_Purchase;
+        $purchasing->Purchase_Status = $request->Selling_Status;
+        $purchasing->Grand_Total = $request->Grand_Total;
+        $purchasing->save();
 
-        return redirect()->route('users.index')->withSuccess('Great! You have Successfully updated '. $user->name);
+        return redirect()->route('purchase.index')->withSuccess('Great! You have Successfully updated '. $user->name);
     }
 
-    public function destroy(User $user)
+    public function destroy(Purchasing $purchasing)
     {
-        $user->delete();
-        return redirect()->route('users.index')->withSuccess($user->name. ' has been deleted successfully');
+        $purchasing->delete();
+        return redirect()->route('purchase.index')->withSuccess($purchasing->Vendor_Id. ' has been deleted successfully');
     }
 
 }

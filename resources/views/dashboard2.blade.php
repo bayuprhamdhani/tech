@@ -68,7 +68,7 @@
       </li>
 
       <li>
-        <a href="index.html">
+        <a href="{{ route('purchase.index') }}">
           <i class="zmdi zmdi-format-list-bulleted"></i> <span>Purchase</span>
         </a>
       </li>

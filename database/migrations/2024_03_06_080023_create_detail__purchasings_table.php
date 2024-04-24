@@ -18,7 +18,6 @@ return new class extends Migration
             $table->integer('Purchasing_Price');
             $table->integer('Qty');
             $table->integer('Sub_Total');
-            $table->timeStamps();
         });
     }
 

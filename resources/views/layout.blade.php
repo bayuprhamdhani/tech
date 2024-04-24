@@ -63,20 +63,26 @@
       </li>
 
       <li>
-        <a href="index.html">
+        <a href="{{ route('purchase.index') }}">
           <i class="zmdi zmdi-format-list-bulleted"></i> <span>Purchase</span>
         </a>
       </li>
 
       <li>
-        <a href="index.html">
-          <i class="zmdi zmdi-grid"></i> <span>Sales Transaction</span>
+        <a href="{{ route('selling.index') }}">
+          <i class="zmdi zmdi-grid"></i> <span>Selling</span>
         </a>
       </li>
 
       <li>
         <a href="{{ route('calendar') }}">
           <i class="zmdi zmdi-account-calendar"></i> <span>Calendar</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="{{ route('test') }}">
+          <i class="zmdi zmdi-alert-circle"></i> <span>Test</span>
         </a>
       </li>
 
@@ -229,13 +235,13 @@
     </li>
     <li class="nav-item">
       <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
-        <span class="user-profile"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPFNeUn89NkscCQdePBFlIp7ixL81eU9pY3g&s" class="img-circle" alt="user avatar"></span>
+        <span class="user-profile"><img src="images/avatar/7.jpg" class="img-circle" alt="user avatar"></span>
       </a>
       <ul class="dropdown-menu dropdown-menu-right">
        <li class="dropdown-item user-details">
         <a href="javaScript:void();">
            <div class="media">
-             <div class="avatar"><img class="align-self-start mr-3" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPFNeUn89NkscCQdePBFlIp7ixL81eU9pY3g&s" alt="user avatar"></div>
+             <div class="avatar"><img class="align-self-start mr-3" src="images/avatar/7.jpg" alt="user avatar"></div>
             <div class="media-body">
             <h6 class="mt-2 user-title">{{ auth()->user()->name }}</h6>
             <p class="user-subtitle">{{ auth()->user()->email }}</p>
@@ -432,6 +438,140 @@ $(document).ready(function() {
     }, 400);
   }
 });
+
+$(document).ready(function() {
+
+handleBtnDeleteColom();
+handleBtnAddColom();
+handleHitung();
+
+$('#sample_form').on('submit', function(event){
+    event.preventDefault();
+
+    const details = [];
+    $('[data-area]').each(function() {
+        detail = {
+            "trxid": $('#notrx').val(),
+            "kd_brg": $(this).find('input#kd_brg').val(),
+            "nama_barang":$(this).find('input#nama_brg').val(),
+            "Selling_Price": $(this).find('input#Selling_Price').val(),
+            "Qty": $(this).find('input#Qty').val(),
+            "Sub_Total":$(this).find('input#Sub_Total').val()
+        };
+        details.push(detail);
+    });
+
+    
+    
+    var formData = {
+        "trxid": $('#notrx').val(),
+        "date_sell": $('#date_sell').val(),
+        "nama_customer": $('#nama_customer').val(),
+        "kasir": $('#nama_customer').val(),
+        "grand_total" : $('#total').val(),
+        "details" : details
+    }
+    console.log(JSON.stringify(formData));
+
+    $.ajax({
+        url:"http://localhost:8080/konterku-main/api/penjualan/create.php",
+        method:"POST",
+        data: JSON.stringify(formData),
+        success:function(data){
+            $('#action_button').attr('disabled', false);
+            window.location.href = 'http://localhost:8080/konterku-main/views/penjualan/';
+        },
+        error: function(err) {
+            console.log(err);   
+            $('#message').html('<div class="alert alert-danger">'+err.responseJSON+'</div>');  
+        }
+    });
+});
+
+function handleBtnAddColom(){
+    var target_area = $("#target_area");
+    $("button#add_colom").off("click").on("click", function(){
+        var _this = $(this),
+        currentArea = _this.parent().parent(),
+        cloningan = currentArea.clone();
+
+        // Clear input values in the cloned area
+        cloningan.find('input').val('');
+
+        target_area.append(cloningan);
+        setTimeout(() => {
+            handleBtnAddColom();
+            handleHitung();
+            handleBtnDeleteColom();
+        }, 500);
+    });
+}
+
+function handleBtnDeleteColom(){
+    $("button#delete_colom").off("click").on("click", function(){
+        var el_count = $('[data-area]').length;
+        //alert(el_count);
+        if(el_count < 2){
+            return false;
+        }
+
+        var _this = $(this),
+        currentArea = _this.parent().parent();
+
+        currentArea.remove();
+        gotoView();
+    });
+}
+
+function handleHitung(){
+  $('input#Qty').off("input").on("input", function(){
+    var _this = $(this),
+    currentArea = _this.parent().parent();
+    harga = currentArea.find('input[name="Price[]"]').val();
+    qty = currentArea.find('input[name="Qty[]"]').val();
+
+    // Check if harga or qty is not a number
+    if (isNaN(harga) || isNaN(qty)) {
+      currentArea.find('input[name="Sub_Total[]"]').val("SALAH INPUT!");
+      hitungTotal();
+      return;
+    }
+
+    total = harga*qty;
+
+    currentArea.find('input[name="Sub_Total[]"]').val(total);
+    hitungTotal();
+  });
+}
+
+function hitungTotal(){
+  var total = 0;
+  var hasWrongValue = false; // Flag to track if there's a "Wrong!" value
+
+  $('[data-area="area_50"]').each(function(){
+    var _this = $(this);
+    var subtot = _this.find("input[name='Sub_Total[]']").val();
+
+    // Check if subtot is "Wrong!" or not a number
+    if (subtot === "Wrong!" || isNaN(subtot)) {
+      hasWrongValue = true; // Set the flag to true if a "Wrong!" value is found
+      return true; // Continue the .each() loop to check all inputs
+    }
+
+    // If subtot is a valid number or can be converted to a number, add it to the total
+    total += parseFloat(subtot);
+  });
+
+  // If there was a "Wrong!" value, set the total to "Wrong!", otherwise set it to the calculated total
+  $('#Grand_Total').val(hasWrongValue ? "Bodoh ! tingal SUB TOTAL" : total);
+}
+
+function gotoView(){
+    var el = $('[data-area="area_50"]').find(".row:last-child")[0];
+    el.scrollIntoView();
+}
+});
+
 </script>
 </body>
 </html>

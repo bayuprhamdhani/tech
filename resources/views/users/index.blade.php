@@ -4,6 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-10">
+            
             <div class="card">
                 @if (session('success'))
                     <div class="alert alert-success" role="alert">
@@ -12,10 +13,16 @@
                 @endif
                 <div class="card-header">{{ __('Table Users') }}</div>
   
-                <div class="card-body">
-                    <a href="{{ route('users.create') }}" class="btn btn-sm btn-secondary">
-                        Tambah User
-                    </a>
+                <div class="card-body mb-4">
+                <form action="{{ route('users.import') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <input type="file" name="file" class="form-control">
+                <br>
+                <button class="btn btn-success">Import User Data</button>
+                    <a class="btn btn-secondary float-end" href="{{ route('users.create') }}">Tambah User</a>
+                    <a class="btn btn-warning float-end" href="{{ route('users.export') }}">Export User Data</a>
+            </form>
+
                     <table class="table table-responsive" style="width:100%" id="users">
                         <thead>
                             <tr>

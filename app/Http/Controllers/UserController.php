@@ -5,6 +5,10 @@ use App\Models\User;
 use App\Models\Role;
 use App\Models\Status;
 use Illuminate\Http\Request;
+use App\Exports\UsersExport;
+use App\Imports\UsersImport;
+use Maatwebsite\Excel\Facades\Excel;
+
 use Hash;
 
 class UserController extends Controller
@@ -30,7 +34,6 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
-            'role' => 'required',
             'Status' => 'required',
         ]);
            
@@ -77,6 +80,21 @@ class UserController extends Controller
     {
         $user->delete();
         return redirect()->route('users.index')->withSuccess($user->name. ' has been deleted successfully');
+    }
+
+    public function export() 
+    {
+        return Excel::download(new UsersExport, 'users.xlsx');
+    }
+       
+    /**
+    * @return \Illuminate\Support\Collection
+    */
+    public function import() 
+    {
+        Excel::import(new UsersImport,request()->file('file'));
+               
+        return back()->withSuccess('Successfully Imported');
     }
 
 }

@@ -18,7 +18,7 @@ class SellingController extends Controller
 
     public function create(){
         $transaction_status = Transaction_Status::All();
-        return view('selling/create', compact('status'));
+        return view('selling/create', compact('transaction_status'));
     }
 
     public function store(Request $request)
